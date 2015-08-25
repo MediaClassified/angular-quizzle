@@ -1,0 +1,17 @@
+{
+  "name": "angular-quizzle",
+  "version": "0.0.0",
+  "homepage": "https://github.com/MediaClassified/angular-quizzle",
+  "authors": [
+    "Matthew <weeksling@gmail.com>"
+  ],
+  "description": "Angular module for simple, effective true/false quizzes",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
