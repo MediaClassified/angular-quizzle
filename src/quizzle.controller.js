@@ -11,6 +11,11 @@
 			vm.index = null;
 			vm.scores = {};
 
+            vm.visible = true;
+
+            vm.isLeft = false;
+            vm.isRight = false;
+
 			/* Functions */
 			vm.startQuiz = startQuiz;
 			vm.setQuestion = setQuestion;
@@ -54,7 +59,7 @@
 				vm.right = vm.quiz[index].answer.right;
 			}
 
-			function answerQuestion (answer) {
+			function answerQuestion (answer, direction) {
 				answer.categories.map(function(category) {
 					if(!vm.scores[category]) {
 						vm.scores[category] = 1;
@@ -67,6 +72,11 @@
 				var next = vm.index + 1;
 				if(vm.quiz[next]) {
 					setQuestion(next);
+                    if (direction == 'left') {
+                        toggleLeft();
+                    } else if (direction == 'right') {
+                        toggleRight();
+                    }
 				} else {
 					vm.finish(vm.scores);
 					vm.current = {
@@ -75,5 +85,15 @@
 					};
 				}
 			}
+
+            function toggleLeft() {
+                vm.isLeft = true;
+                vm.visible = !vm.visible;
+            }
+
+            function toggleRight() {
+                vm.isRight = true;
+                vm.visible = !vm.visible;
+            }
 		}
 })();
