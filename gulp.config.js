@@ -3,7 +3,7 @@ module.exports = function () {
 	var src   = './src/';
 
 	return {
-		moduleName: 'quizzle.js',
+		moduleName: 'quizzle',
 		module:src+'*.module.js',
 		order: [
 			'*.module.js',

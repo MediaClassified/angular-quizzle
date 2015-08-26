@@ -8,12 +8,14 @@ gulp.task('build', ['concat-js', 'concat-css'])
 gulp.task('concat-js', function (){
 	return gulp.src(config.js)
 		.pipe($.order(config.order))
-		.pipe($.concat(config.moduleName))
+		.pipe($.concat(config.moduleName+'.js'))
 		.pipe(gulp.dest('dist'));
 })
 
 gulp.task('concat-css', function () {
-
+	return gulp.src(config.css)
+		.pipe($.concat(config.moduleName+'.css'))
+		.pipe(gulp.dest('dist'));
 })
 
 function inject(src, label, order) {
