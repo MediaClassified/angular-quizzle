@@ -9,10 +9,15 @@
 			vm.current = null;
 			vm.answer = null;
 			vm.index = null;
+			vm.scores = {};
 
 			/* Functions */
 			vm.startQuiz = startQuiz;
 			vm.setQuestion = setQuestion;
+			vm.answerQuestion = answerQuestion;
+			vm.finish = function () {
+                vm.onFinish();
+            };
 
 			activate();
 
@@ -50,7 +55,25 @@
 			}
 
 			function answerQuestion (answer, index) {
-				setQuestion(index+1);
+				answer.categories.map(function(category) {
+					if(!vm.scores[category]) {
+						vm.scores[category] = 1;
+					} else {
+						vm.scores[category]++;
+					}
+				});
+
+				/* Go to next question */
+				var next = index + 1;
+				if(vm.quiz[next]) {
+					setQuestion(next);
+				} else {
+					vm.finish();
+					vm.current = {
+						text: 'Done',
+						answer: null
+					};
+				}
 			}
 		}
 })();

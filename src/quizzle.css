@@ -1,3 +1,7 @@
+.hide {
+	visibility: hidden;
+}
+
 .quizzle-container {
     background-color: #F5F5F5;
     height: 100%;
