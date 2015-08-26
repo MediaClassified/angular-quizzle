@@ -8,12 +8,13 @@
         </div>
     </div>
     <div class="quizzle-answer-container">
-        <div class="quizzle-answer">
-            {{vm.left.text}}
+
+        <div class="quizzle-answer quizzle-answer-left">
+            <span>{{vm.left.text}}</span>
             <img class="quizzle-answer-img" ng-src="{{vm.left.img}}" />
-        </div>
-        <div class="quizzle-answer">
-            {{vm.right.text}}
+        </div><!--
+     --><div class="quizzle-answer quizzle-answer-right">
+            <span>{{vm.right.text}}</span>
             <img class="quizzle-answer-img" ng-src="{{vm.right.img}}" />
         </div>
     </div>
