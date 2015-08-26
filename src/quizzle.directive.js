@@ -6,7 +6,7 @@
             return {
                 restrict: 'E',
                 scope: {
-                    quiz: "@",
+                    quiz: "=",
                     startOn: "="
                 },
                 templateUrl: '../angular-quizzle/src/quizzle.template.html',
