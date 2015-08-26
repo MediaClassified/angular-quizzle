@@ -15,8 +15,8 @@
 			vm.startQuiz = startQuiz;
 			vm.setQuestion = setQuestion;
 			vm.answerQuestion = answerQuestion;
-			vm.finish = function () {
-                vm.onFinish();
+			vm.finish = function (results) {
+                vm.onFinish({results: results});
             };
 
 			activate();
@@ -54,7 +54,7 @@
 				vm.right = vm.quiz[index].answer.right;
 			}
 
-			function answerQuestion (answer, index) {
+			function answerQuestion (answer) {
 				answer.categories.map(function(category) {
 					if(!vm.scores[category]) {
 						vm.scores[category] = 1;
@@ -64,11 +64,11 @@
 				});
 
 				/* Go to next question */
-				var next = index + 1;
+				var next = vm.index + 1;
 				if(vm.quiz[next]) {
 					setQuestion(next);
 				} else {
-					vm.finish();
+					vm.finish(vm.scores);
 					vm.current = {
 						text: 'Done',
 						answer: null

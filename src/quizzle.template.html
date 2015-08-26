@@ -7,13 +7,13 @@
             <img ng-class="{'hide': !vm.current.img}" ng-src="{{vm.current.img}}"/>
         </div>
     </div>
-    <div class="quizzle-answer-container">
+    <div class="quizzle-answer-container" ng-class="{'hide': !vm.current.answer}">
 
-        <div class="quizzle-answer quizzle-answer-left" ng-click="vm.answerQuestion(vm.left, vm.index)">
+        <div class="quizzle-answer quizzle-answer-left" ng-click="vm.answerQuestion(vm.left)">
             <span>{{vm.left.text}}</span>
             <img class="quizzle-answer-img" ng-src="{{vm.left.img}}" />
         </div><!--
-     --><div class="quizzle-answer quizzle-answer-right" ng-click="vm.answerQuestion(vm.right, vm.index)">
+     --><div class="quizzle-answer quizzle-answer-right" ng-click="vm.answerQuestion(vm.right)">
             <span>{{vm.right.text}}</span>
             <img class="quizzle-answer-img" ng-src="{{vm.right.img}}" />
         </div>
