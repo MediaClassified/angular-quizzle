@@ -1,0 +1,17 @@
+.quizzle-container {}
+.quizzle-question {
+    width: 100%;
+    height: 80%;
+}
+.quizzle-question-text {}
+.quizzle-question-img {
+    text-align: center;
+}
+.quizzle-answer-container {
+    width: 100%;
+    height: 20%;
+}
+.quizzle-answer {
+    width: 50%;
+    display: inline-block;
+}
