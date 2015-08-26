@@ -7,10 +7,11 @@
                 scope: {
                     
                 },
-                templateUrl: 'quizzle.template.html',
+                templateUrl: './angular-quizzle/src/quizzle.template.html',
                 bindToController: true,
                 controller: 'QuizzleController',
                 controllerAs: 'vm'
             }
-        });)
+        })
+
 })();
