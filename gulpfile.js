@@ -6,8 +6,9 @@ var $ = require('gulp-load-plugins')({lazy:true});
 gulp.task('build', ['concat-js', 'concat-css'])
 
 gulp.task('concat-js', function (){
-	return gulp.src(config.module)
-		.pipe(inject(config.js))
+	return gulp.src(config.js)
+		.pipe($.order(config.order))
+		.pipe($.concat(config.moduleName))
 		.pipe(gulp.dest('dist'));
 })
 
@@ -22,11 +23,4 @@ function inject(src, label, order) {
     }
 
     return $.inject(orderSrc(src, order), options);
-}
-
-function orderSrc (src, order) {
-    //order = order || ['**/*'];
-    return gulp
-        .src(src)
-        .pipe($.if(order, $.order(order)));
 }

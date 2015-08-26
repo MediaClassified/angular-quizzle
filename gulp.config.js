@@ -3,8 +3,13 @@ module.exports = function () {
 	var src   = './src/';
 
 	return {
+		moduleName: 'quizzle.js',
 		module:src+'*.module.js',
-		js: src+'**/*.js',
+		order: [
+			'*.module.js',
+			'*.js'
+		],
+		js: src+'*.js',
 		css:src+'**/*.css'
 	}
 }
