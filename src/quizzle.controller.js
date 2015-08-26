@@ -9,18 +9,25 @@
 			activate();
 
 			function activate(){
+				/* Checks if quiz is defined */
+				if(!vm.quiz) {
+					console.log('Please enter a quiz');
+					return;
+				}
+
 				if(vm.startOn != undefined) {
-					console.log('activate')
 					$rootScope.$watch(function () {
 						return vm.startOn;
 					}, function (value) {
 						if (value) {
-							console.log('Starton')
+							console.log('Quiz has started')
 							// Start Quiz
+						} else {
+							console.log('Waiting for variable...')
 						}
 					})
 				} else {
-					console.log('no-startON')
+					console.log('No start-on variable defined. Quiz has started.')
 					// Start Quiz
 				}			
 			}
