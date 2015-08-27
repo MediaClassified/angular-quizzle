@@ -1,17 +1,38 @@
 {
-  "name": "angular-quizzle",
-  "version": "0.0.0",
-  "homepage": "https://github.com/MediaClassified/angular-quizzle",
-  "authors": [
-    "Matthew <weeksling@gmail.com>"
-  ],
-  "description": "Angular module for simple, effective true/false quizzes",
-  "license": "MIT",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ]
+    "name": "angular-quizzle",
+    "authors": [
+        "Matthew Weeks <weeksling@gmail.com> (http://mweeks.me)",
+        "Iris Ng <irislyng@gmail.com> (http://irislyng.me)",
+        "Harit Patel <ptlharit@gmail.com> (http://haritpatel.me)",
+        "Jen Tran <j.yn.tran@gmail.com> (http://jyntran.ca)"
+    ],
+    "version": "0.0.0",
+    "homepage": "http://mediaclassified.github.io/angular-quizzle/",
+    "repository": {
+        "type": "git", 
+        "url": "git://github.com/MediaClassified/angular-quizzle.git"
+    },
+    "main": [
+        "dist/quizzle.js",
+        "dist/quizzle.css"
+    ],
+    "dependencies": {
+        "angular-animate": "~1.3.14"
+    },
+    "keywords": [
+        "angular",
+        "quiz",
+        "questionnaire",
+        "quiz generator"
+    ],
+    "description": "Angular module for simple, effective true/false quizzes",
+    "license": "MIT",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests",
+        "src"
+    ],
 }
