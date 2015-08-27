@@ -18,6 +18,11 @@
 		.\34 u, .\34 u\24 {
 			width: 50% !important;
 		}
+
+		code {
+			display: block;
+			margin: 20px 0px;
+		}
 		</style>
 
 		<!-- Include Angular-Quizzle -->
@@ -57,59 +62,70 @@
 		<!-- Get Started -->
 			<section id="two" class="main style2">
 				<div class="container">
-					<div class="row 150%">
-						<div class="6u 12u$(medium)">
-							<ul class="major-icons">
-								<li><span class="icon style1 major fa-code"></span></li>
-								<li><span class="icon style2 major fa-bolt"></span></li>
-								<li><span class="icon style3 major fa-camera-retro"></span></li>
-								<li><span class="icon style4 major fa-cog"></span></li>
-								<li><span class="icon style5 major fa-desktop"></span></li>
-								<li><span class="icon style6 major fa-calendar"></span></li>
-							</ul>
-						</div>
-						<div class="6u$ 12u$(medium)">
-							<header class="major">
-								<h2>Lorem ipsum dolor adipiscing<br />
-								amet dolor consequat</h2>
-							</header>
-							<p>Adipiscing a commodo ante nunc accumsan interdum mi ante adipiscing. A nunc lobortis non nisl amet vis volutpat aclacus nascetur ac non. Lorem curae eu ante amet sapien in tempus ac. Adipiscing id accumsan adipiscing ipsum.</p>
-							<p>Blandit faucibus proin. Ac aliquam integer adipiscing enim non praesent vis commodo nunc phasellus cubilia ac risus accumsan. Accumsan blandit. Lobortis phasellus non lobortis dit varius mi varius accumsan lobortis. Blandit ante aliquam lacinia lorem lobortis semper morbi col faucibus vitae integer placerat accumsan orci eu mi odio tempus adipiscing adipiscing adipiscing curae consequat feugiat etiam dolore.</p>
-							<p>Adipiscing a commodo ante nunc accumsan interdum mi ante adipiscing. A nunc lobortis non nisl amet vis volutpat aclacus nascetur ac non. Lorem curae eu ante amet sapien in tempus ac. Adipiscing id accumsan adipiscing ipsum.</p>
-						</div>
-					</div>
+					<header class="major">
+						<h2>Getting Started</h2>
+					</header>
+					<p>
+						<ol>
+							<li>Install Quizzle via <a href="http://bower.io/" target="_blank">bower</a> or <a href="">download the latest zip</a>.
+							<code>
+								<span class="tag">bower install angular-quizzle --save</span>
+							</code>
+
+							<li>Include <a href="http://angularjs.org/" target="_blank">AngularJS</a> in your project.</li>
+							<code>
+								<span class="tag">&lt;script</span>
+								<span class="attr">
+									src="/path/to/angular/angular.min.js"</span>
+								<span class="tag">&gt;&lt;&#47;script&gt;</span>
+							</code>
+
+							<li>Include Quizzle and its dependencies.</li>
+							<code>
+								<span class="tag">&lt;script</span>
+								<span class="attr">
+									src="/path/to/angular-animate/angular-animate.min.js"</span>
+								<span class="tag">&gt;&lt;&#47;script&gt;</span><br>
+								<span class="tag">&lt;script</span>
+								<span class="attr">
+									src="/path/to/angular-quizzle/dist/quizzle.js"</span>
+								<span class="tag">&gt;&lt;&#47;script&gt;</span><br>
+								<span class="tag">&lt;link</span>
+								<span class="attr">
+									rel="stylesheet" href="/path/to/angular-quizzle/dist/quizzle.css"</span>
+								<span class="tag">&#47;&gt;</span>
+							</code>
+
+							<li>Load the module in your application by including it as a dependency.</li>
+							<code>
+								angular.module('app', ['quizzle']);
+							</code>
+
+							<li><a href="#three" class="scrolly">Generate a quiz</a> or create your own. If you create your own quiz, be sure to <a href="#four" class="scrolly">follow the guidelines.</a></li>
+
+							<li>Include the quizzle directive in your HTML with your quiz object.</li>
+							<code>
+								<span class="tag">&lt;quizzle</span>
+								<span class="attr">quiz="quiz" repeat="true"</span>
+								<span class="tag">&gt;&lt;&#47;quizzle&gt;</span>
+							</code>
+						</ol>
+					</p>
 				</div>
 			</section>
 
 		<!-- Quiz Generator -->
-			<section id="three" class="main style1">
+			<section id="three" class="main style1 special">
 				<div class="container">
-					<div class="row 150%">
-						<div class="6u 12u$(medium)">
-							<ul class="major-icons">
-								<li><span class="icon style1 major fa-code"></span></li>
-								<li><span class="icon style2 major fa-bolt"></span></li>
-								<li><span class="icon style3 major fa-camera-retro"></span></li>
-								<li><span class="icon style4 major fa-cog"></span></li>
-								<li><span class="icon style5 major fa-desktop"></span></li>
-								<li><span class="icon style6 major fa-calendar"></span></li>
-							</ul>
-						</div>
-						<div class="6u$ 12u$(medium)">
-							<header class="major">
-								<h2>Lorem ipsum dolor adipiscing<br />
-								amet dolor consequat</h2>
-							</header>
-							<p>Adipiscing a commodo ante nunc accumsan interdum mi ante adipiscing. A nunc lobortis non nisl amet vis volutpat aclacus nascetur ac non. Lorem curae eu ante amet sapien in tempus ac. Adipiscing id accumsan adipiscing ipsum.</p>
-							<p>Blandit faucibus proin. Ac aliquam integer adipiscing enim non praesent vis commodo nunc phasellus cubilia ac risus accumsan. Accumsan blandit. Lobortis phasellus non lobortis dit varius mi varius accumsan lobortis. Blandit ante aliquam lacinia lorem lobortis semper morbi col faucibus vitae integer placerat accumsan orci eu mi odio tempus adipiscing adipiscing adipiscing curae consequat feugiat etiam dolore.</p>
-							<p>Adipiscing a commodo ante nunc accumsan interdum mi ante adipiscing. A nunc lobortis non nisl amet vis volutpat aclacus nascetur ac non. Lorem curae eu ante amet sapien in tempus ac. Adipiscing id accumsan adipiscing ipsum.</p>
-						</div>
-					</div>
+					<header>
+						<h2>Generate a Quiz</h2>
+					</header>
+					<a href="#one" class="button">Begin</a>
 				</div>
 			</section>
 
 		<!-- About the Developers -->
-			<section id="four" class="main style2 special">
+			<section id="five" class="main style2 special">
 				<div class="container">
 					<header class="major">
 						<h2>About the Developers</h2>
@@ -156,7 +172,7 @@
 			</section>
 
 		<!-- About MCC -->
-			<section id="five" class="main style1 special">
+			<section id="six" class="main style1 special">
 				<div class="container">
 					<header class="major">
 						<h2>About Media Classified Corporation</h2>
@@ -172,7 +188,8 @@
 			</section>
 
 		<!-- Five -->
-			<section id="five" class="main style1">
+		<!--
+			<section id="seven" class="main style1">
 				<div class="container">
 					<header class="major special">
 						<h2>Elements</h2>
@@ -488,7 +505,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 
 				</div>
 			</section>
-
+		-->
 		<!-- Footer -->
 			<section id="footer">
 				<ul class="icons">
