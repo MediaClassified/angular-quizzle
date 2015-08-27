@@ -2,7 +2,7 @@
 
 	angular
 		.module('quizzle')
-		.directive('quizzle', function() {
+		.directive('quizzle', ['$swipe', function ($swipe) {
             return {
                 restrict: 'E',
                 scope: {
@@ -28,5 +28,5 @@
                 //     }
                 }
             }
-        });
+        }]);
 })();
