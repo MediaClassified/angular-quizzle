@@ -34,11 +34,11 @@
     "tests",
     "src"
   ],
-  "_release": "5e36348c42",
+  "_release": "ffd6058994",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "5e36348c4221e218154d13908bab073f1020fd82"
+    "commit": "ffd605899433af454386d1384123db537986242c"
   },
   "_source": "git://github.com/MediaClassified/angular-quizzle.git",
   "_target": "*",

@@ -16,6 +16,7 @@
   "homepage": "https://github.com/MediaClassified/angular-quizzle",
   "devDependencies": {
     "gulp": "^3.9.0",
+    "gulp-angular-templatecache": "^1.7.0",
     "gulp-concat": "^2.6.0",
     "gulp-if": "^1.2.5",
     "gulp-inject": "^1.5.0",

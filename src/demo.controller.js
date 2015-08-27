@@ -3,25 +3,27 @@
 		.module('demo')
 		.controller('DemoController', DemoController);
 
-		function DemoController ($timeout, $http) {
+		function DemoController () {
 			var vm = this;
-			vm.quiz = {
-				[
+			vm.start = false;
+
+
+			vm.quiz = [
 					{
-						"text": "Are you older than 10?",
+						"text": "Do you like Quizzle?",
 						"answer": {
 							"left": {
-								"categories": ["category 1", "category 2"],
+								"categories": ["yes"],
 								"text": "Yes",
-								"img": "http://lorempixel.com/50/50/food"
+								"img": ""
 							},
 							"right": {
-								"categories": ["category 3", "category 4"],
+								"categories": ["no"],
 								"text": "No",
-								"img": "http://lorempixel.com/50/50/cats"
+								"img": ""
 							}
 						},
-						"img": "http://lorempixel.com/400/200/cats"
+						"img": ""
 					},
 					{
 						"text": "Are you younger than 10?",
@@ -39,7 +41,6 @@
 						},
 						"img": ""
 					}
-				]
-			}
+				];
 		}
 })();

@@ -23,16 +23,24 @@
 			display: block;
 			margin: 20px 0px;
 		}
-		section#three {
+		section#one {
+			padding: 20px;
+		}
+		section#one, section#three {
 		    min-height: 500px;
 		    display: table;
 		    width: 100%;
 		}
-		section#three .container {
+		section#one .container, section#three .container {
 			display: table-cell;
 		    vertical-align: middle;
 		    width: 100% !important;
 		    text-align: center;
+		}
+		.quizzle-demo-container {
+			width: 500px;
+			height: 400px;
+			margin: 0px auto;
 		}
 		</style>
 
@@ -44,6 +52,7 @@
 
 		<!--Include JS -->
 		<script src="src/demo.js"></script>
+		<script src="src/demo.controller.js"></script>
 	</head>
 	<body>
 
@@ -63,9 +72,15 @@
 
 		<!-- Quizzle Demo -->
 			<section id="one" class="main style1 special" ng-app="demo">
-				<div class="container">
-					<div class="quizzle-demo-container" ng-controller="DemoController as vm">
-						<quizzle quiz="vm.quiz" repeat="true"></quizzle>
+				<div class="container" ng-controller="DemoController as vm">
+					<div class="quizzle-demo-container" ng-if="!vm.start">
+						<header>
+							<h2>Start Quiz</h2>
+						</header>
+						<a class="button"ng-click="vm.start=true">Begin</a>
+					</div>
+					<div class="quizzle-demo-container">
+						<quizzle quiz="vm.quiz" repeat="true" start-on="vm.start"></quizzle>
 					</div>
 				</div>
 			</section>
