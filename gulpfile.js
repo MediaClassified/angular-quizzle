@@ -7,7 +7,7 @@ gulp.task('build-watch', ['build'], function () {
 })
 gulp.task('build', ['concat-js', 'concat-css'])
 
-gulp.task('concat-js', function (){
+gulp.task('concat-js', ['templates'], function (){
 	return gulp.src(config.js)
 		.pipe($.order(config.order))
 		.pipe($.concat(config.moduleName+'.js'))
@@ -18,6 +18,12 @@ gulp.task('concat-css', function () {
 	return gulp.src(config.css)
 		.pipe($.concat(config.moduleName+'.css'))
 		.pipe(gulp.dest('dist'));
+})
+
+gulp.task('templates', function () {
+	return gulp.src(config.html)
+		.pipe($.angularTemplatecache())
+		.pipe(gulp.dest('src'));
 })
 
 function inject(src, label, order) {

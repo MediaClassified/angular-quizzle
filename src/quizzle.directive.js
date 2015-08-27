@@ -12,7 +12,7 @@
                     /* Must be a way to make separate */
                     repeat: "="
                 },
-                templateUrl: '../angular-quizzle/src/quizzle.template.html',
+                templateUrl: 'quizzle.template.html',
                 bindToController: true,
                 controller: 'QuizzleController',
                 controllerAs: 'vm',
