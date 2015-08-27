@@ -1,4 +1,3 @@
 (function(){
-    'use strict';   
-   angular.module('quizzle', []);
+    angular.module('quizzle', ['ngAnimate'])
 })();

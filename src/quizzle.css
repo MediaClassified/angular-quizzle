@@ -7,12 +7,40 @@
 .quizzle-container {
 	position: relative;
     width: 100%;
+<<<<<<< HEAD
     height: 100%;
     min-width: 450px;
     min-height: 500px;
     font-family: 'Open Sans', sans-serif;
     border-radius: 10px;
+=======
+    overflow: hidden;
+>>>>>>> 2faea09b457a00288ab012d79e819098b7c86e6c
 }
+
+.quizzle-slide {
+    background-color: #fff;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    -webkit-transition-duration: 1s;
+    transition-duration: 1s;
+}
+
+.quizzle-slide-left.ng-leave {
+    margin-left: 0;
+}
+.quizzle-slide-left.ng-leave-active {
+    margin-left: -100%;
+}
+
+.quizzle-slide-right.ng-leave {
+    margin-right: 0;
+}
+.quizzle-slide-right.ng-leave-active {
+    margin-right: -100%;
+}
+
 .quizzle-question {
 	display: table;
 	width: 100%;
@@ -25,12 +53,20 @@
     display: table-cell;
     vertical-align: middle;
     font-weight: 600;
+/**/
+    position: absolute;
+    top: 50%;
+    left: 0%;
+/**/
     width: 100%;
     height: 100%;
     padding: 10px;
 }
-.quizzle-question-text .question {
-	font-size: 32px	;
+.quizzle-question-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .quizzle-answer-container {
 	display: table;

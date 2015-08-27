@@ -6,12 +6,11 @@
         </div>
     </div>
     <div class="quizzle-answer-container" ng-class="{'hide': !vm.current.answer}">
-
-        <div class="quizzle-answer" ng-click="vm.answerQuestion(vm.left)">
+        <div class="quizzle-answer" ng-click="vm.answerQuestion(vm.left, 'left')">
             <span ng-if="!vm.left.img">{{vm.left.text}}</span>
             <img class="quizzle-answer-img" ng-class="{'hide': !vm.left.img}" ng-src="{{vm.left.img}}" />
-        </div><!--
-     --><div class="quizzle-answer" ng-click="vm.answerQuestion(vm.right)">
+        </div>
+        <div class="quizzle-answer" ng-click="vm.answerQuestion(vm.right, 'right')">
             <span ng-if="!vm.right.img">{{vm.right.text}}</span>
             <img class="quizzle-answer-img" ng-class="{'hide': !vm.right.img}" ng-src="{{vm.right.img}}" />
         </div>
@@ -19,4 +18,5 @@
 
     <div class="quizzle-answer-container" ng-if="vm.repeat" ng-class="{'hide': vm.current.answer}">
         <a class="quizzle-repeat-link" ng-click="vm.resetQuiz()">Click here to take the quiz again.</a>
+    </div>
 </div>
