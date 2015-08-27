@@ -3,9 +3,9 @@
         <div class="quizzle-question">
             <div class="quizzle-question-text">
                 <span>{{slide.text}}</span>
-            </div>
-            <div class="quizzle-question-img">
-                <img ng-class="{'hide': !slide.img}" ng-src="{{slide.img}}"/>
+                <div class="quizzle-question-img">
+                    <img ng-class="{'hide': !slide.img}" ng-src="{{slide.img}}"/>
+                </div>
             </div>
         </div>
         <div class="quizzle-answer-container" ng-class="{'hide': !slide.answer}">

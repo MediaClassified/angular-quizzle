@@ -100,6 +100,7 @@
                 } else if (direction == 'right') {
                     vm.answered[index] = 'right';
                 }
+            }
 
 			function resetQuiz () {
 				vm.results = {
