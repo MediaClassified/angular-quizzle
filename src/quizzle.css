@@ -5,7 +5,7 @@
 }
 
 .quizzle-container {
-	position: relative;
+    position: relative;
     overflow: hidden;
     width: 100%;
     height: 100%;
@@ -16,26 +16,31 @@
 }
 
 .quizzle-slide {
-    position: relative;
+    position: absolute;
     width: 100%;
     height: 100%;
     background-color: #fff;
+    z-index: 1;
     -webkit-transition-duration: 1s;
     transition-duration: 1s;
 }
 
-.quizzle-slide-left.ng-leave {
-    margin-left: 0;
-}
-.quizzle-slide-left.ng-leave-active {
-    margin-left: -100%;
+.quizzle-slide-current {
+    z-index: 10;
 }
 
-.quizzle-slide-right.ng-leave {
-    margin-right: 0;
+.quizzle-slide-left.quizzle-slide-left-add {
+    margin-left: 0;
 }
-.quizzle-slide-right.ng-leave-active {
-    margin-right: -100%;
+.quizzle-slide-left.quizzle-slide-left-add-active {
+    margin-left: -200%;
+}
+
+.quizzle-slide-right.quizzle-slide-right-add {
+    margin-left: 0;
+}
+.quizzle-slide-right.quizzle-slide-right-add-active {
+    margin-left: 200%;
 }
 
 .quizzle-question {
