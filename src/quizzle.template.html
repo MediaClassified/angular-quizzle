@@ -23,9 +23,12 @@
     <div class="quizzle-slide quizzle-slide-done" ng-if="vm.checkDone()">
         <div class="quizzle-question">
             <div class="quizzle-question-text">
-                <span>Done</span>
+                <span>{{vm.current.text}}</span>
             </div>
             <div class="quizzle-question-img">
+            </div>
+            <div class="quizzle-answer-container" ng-if="vm.repeat" ng-class="{'hide': vm.current.answer}">
+                <a class="quizzle-repeat-link" ng-click="vm.resetQuiz()">Click here to take the quiz again.</a>
             </div>
         </div>
     </div>

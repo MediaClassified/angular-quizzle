@@ -1,11 +1,11 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600,700);
+
 .hide {
-	visibility: hidden;
+	display: none !important;
 }
 
 .quizzle-container {
-    background-color: #D1C4E9;
-    height: 100%;
-    width: 100%;
+	position: relative;
     overflow: hidden;
     position: relative;
 }
@@ -16,6 +16,10 @@
     width: 100%;
     position: absolute;
     z-index: 1;
+    min-width: 450px;
+    min-height: 500px;
+    font-family: 'Open Sans', sans-serif;
+    border-radius: 10px;
     -webkit-transition-duration: 1s;
     transition-duration: 1s;
 }
@@ -39,37 +43,57 @@
 }
 
 .quizzle-question {
-    width: 100%;
+    /*position: absolute;*/
+	display: table;
+	width: 100%;
     height: 80%;
-    background-color: #D1C4E9;
-    position: relative;
+    /*background-color: #D1C4E9;*/
     text-align: center;
 }
 .quizzle-question-text {
-}
-.quizzle-question-img {
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+    height: 100%;
+    font-weight: 600;
+    font-size: 32px;
+    padding: 10px;
 }
 .quizzle-answer-container {
+	display: table;
+	position: absolute;
     width: 100%;
     height: 20%;
+    bottom: 0;
 }
 .quizzle-answer {
+	display: table-cell;
+    vertical-align: middle;
 	cursor: pointer;
     width: 50%;
     height: 100%;
-    display: inline-block;
+    font-size: 24px;
     position: relative;
     text-align: center;
+    color: #7E57C2;
+    border-radius: 10px;
+    -webkit-transition: background-color ease 0.3s;
+    transition: background-color ease 0.3s;
 }
-.quizzle-answer span {
-    position: absolute;
-    top: 50%;
-    left: 0%;
-    width: 100%;
+
+.quizzle-answer:hover {
+	background-color: rgba(0, 0, 0, 0.05);
 }
-.quizzle-answer-left {
-    background-color: #FF9E80;
+
+.quizzle-answer:active {
+	background-color: rgba(0, 0, 0, 0.1);
 }
-.quizzle-answer-right {
-    background-color: #03C9A9;
+
+.quizzle-repeat-link {
+	width: 100%;
+    height: 100%;
+	cursor: pointer;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
 }

@@ -12,6 +12,10 @@
             vm.done = false;
             vm.answered = {};
 			vm.scores = {};
+			vm.results = {
+				scores: {},
+				answers: []
+			};
 
 			/* Functions */
 			vm.startQuiz = startQuiz;
@@ -19,6 +23,7 @@
 			vm.answerQuestion = answerQuestion;
             vm.isAnswered = isAnswered;
             vm.checkDone = checkDone;
+			vm.resetQuiz = resetQuiz;
 			vm.finish = function (results) {
                 vm.onFinish({results: results});
             };
@@ -59,14 +64,21 @@
 			}
 
 			function answerQuestion (answer, direction, index) {
+				/* Store scores */
 				answer.categories.map(function(category) {
-					if(!vm.scores[category]) {
-						vm.scores[category] = 1;
+					if(!vm.results.scores[category]) {
+						vm.results.scores[category] = 1;
 					} else {
-						vm.scores[category]++;
+						vm.results.scores[category]++;
 					}
 				});
                 slide(direction, index);
+
+				/* Store answers */
+				vm.results.answers.push({
+					question: vm.current.text,
+					answer: answer
+				});
 
 				/* Go to next question */
 				var next = vm.index + 1;
@@ -75,9 +87,8 @@
 				} else {
                     vm.index = vm.index + 1;
                     vm.done = true;
-					vm.finish(vm.scores);
 					vm.current = {
-						text: 'Done',
+						text: 'Thanks for completing the quiz!',
 						answer: null
 					};
 				}
@@ -89,7 +100,14 @@
                 } else if (direction == 'right') {
                     vm.answered[index] = 'right';
                 }
-            }
+
+			function resetQuiz () {
+				vm.results = {
+					scores: {},
+					answers: []
+				};
+				setQuestion(0);
+			}
 
             function isAnswered(index) {
                 return vm.answered.index;
