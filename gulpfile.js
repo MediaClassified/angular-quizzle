@@ -2,7 +2,9 @@ var gulp = require('gulp');
 var config = require('./gulp.config.js')();
 var $ = require('gulp-load-plugins')({lazy:true});
 
-
+gulp.task('build-watch', ['build'], function () {
+	return gulp.watch('src/*', ['build']);
+})
 gulp.task('build', ['concat-js', 'concat-css'])
 
 gulp.task('concat-js', function (){
