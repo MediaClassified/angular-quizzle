@@ -1,22 +1,31 @@
-<div class="quizzle-container" ng-if="activate">
-    <div class="quizzle-slide" ng-class="{'quizzle-slide-left':vm.isLeft == true, 'quizzle-slide-right':vm.isRight == true}" ng-if="vm.visible">
+<div class="quizzle-container" ng-if="vm.activate">
+    <div class="quizzle-slide" ng-repeat="slide in vm.quiz" ng-class="{'quizzle-slide-current':vm.index == $index, 'quizzle-slide-left': vm.answered[$index] == 'left', 'quizzle-slide-right': vm.answered[$index] == 'right'}" ng-if="!vm.isAnswered($index)">
         <div class="quizzle-question">
             <div class="quizzle-question-text">
-                <span>{{vm.current.text}}</span>
+                <span>{{slide.text}}</span>
+            </div>
+            <div class="quizzle-question-img">
+                <img ng-class="{'hide': !slide.img}" ng-src="{{slide.img}}"/>
             </div>
         </div>
-        <div class="quizzle-question-img">
-            <img ng-class="{'hide': !vm.current.img}" ng-src="{{vm.current.img}}"/>
-        </div>
-        <div class="quizzle-answer-container" ng-class="{'hide': !vm.current.answer}">
+        <div class="quizzle-answer-container" ng-class="{'hide': !slide.answer}">
 
-            <div class="quizzle-answer quizzle-answer-left" ng-click="vm.answerQuestion(vm.left, 'left')">
-                <span>{{vm.left.text}}</span>
-                <img class="quizzle-answer-img" ng-src="{{vm.left.img}}" />
+            <div class="quizzle-answer quizzle-answer-left" ng-click="vm.answerQuestion(vm.left, 'left', $index)">
+                <span>{{slide.answer.left.text}}</span>
+                <img class="quizzle-answer-img" ng-src="{{slide.answer.left.img}}" />
             </div><!--
-         --><div class="quizzle-answer quizzle-answer-right" ng-click="vm.answerQuestion(vm.right, 'right')">
-                <span>{{vm.right.text}}</span>
-                <img class="quizzle-answer-img" ng-src="{{vm.right.img}}" />
+         --><div class="quizzle-answer quizzle-answer-right" ng-click="vm.answerQuestion(vm.right, 'right', $index)">
+                <span>{{slide.answer.right.text}}</span>
+                <img class="quizzle-answer-img" ng-src="{{slide.answer.right.img}}" />
+            </div>
+        </div>
+    </div>
+    <div class="quizzle-slide quizzle-slide-done" ng-if="vm.checkDone()">
+        <div class="quizzle-question">
+            <div class="quizzle-question-text">
+                <span>Done</span>
+            </div>
+            <div class="quizzle-question-img">
             </div>
         </div>
     </div>

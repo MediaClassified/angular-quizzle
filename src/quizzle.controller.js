@@ -9,17 +9,16 @@
 			vm.current = null;
 			vm.answer = null;
 			vm.index = null;
+            vm.done = false;
+            vm.answered = {};
 			vm.scores = {};
-
-            vm.visible = true;
-
-            vm.isLeft = false;
-            vm.isRight = false;
 
 			/* Functions */
 			vm.startQuiz = startQuiz;
 			vm.setQuestion = setQuestion;
 			vm.answerQuestion = answerQuestion;
+            vm.isAnswered = isAnswered;
+            vm.checkDone = checkDone;
 			vm.finish = function (results) {
                 vm.onFinish({results: results});
             };
@@ -59,7 +58,7 @@
 				vm.right = vm.quiz[index].answer.right;
 			}
 
-			function answerQuestion (answer, direction) {
+			function answerQuestion (answer, direction, index) {
 				answer.categories.map(function(category) {
 					if(!vm.scores[category]) {
 						vm.scores[category] = 1;
@@ -67,17 +66,15 @@
 						vm.scores[category]++;
 					}
 				});
+                slide(direction, index);
 
 				/* Go to next question */
 				var next = vm.index + 1;
 				if(vm.quiz[next]) {
 					setQuestion(next);
-                    if (direction == 'left') {
-                        toggleLeft();
-                    } else if (direction == 'right') {
-                        toggleRight();
-                    }
 				} else {
+                    vm.index = vm.index + 1;
+                    vm.done = true;
 					vm.finish(vm.scores);
 					vm.current = {
 						text: 'Done',
@@ -86,14 +83,21 @@
 				}
 			}
 
-            function toggleLeft() {
-                vm.isLeft = true;
-                vm.visible = !vm.visible;
+            function slide(direction, index) {
+                if (direction == 'left') {
+                    vm.answered[index] = 'left';
+                } else if (direction == 'right') {
+                    vm.answered[index] = 'right';
+                }
             }
 
-            function toggleRight() {
-                vm.isRight = true;
-                vm.visible = !vm.visible;
+            function isAnswered(index) {
+                return vm.answered.index;
             }
+
+            function checkDone() {
+                return vm.done;
+            }
+
 		}
 })();
