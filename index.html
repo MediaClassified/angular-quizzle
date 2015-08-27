@@ -23,6 +23,17 @@
 			display: block;
 			margin: 20px 0px;
 		}
+		section#three {
+		    min-height: 500px;
+		    display: table;
+		    width: 100%;
+		}
+		section#three .container {
+			display: table-cell;
+		    vertical-align: middle;
+		    width: 100% !important;
+		    text-align: center;
+		}
 		</style>
 
 		<!-- Include Angular-Quizzle -->
@@ -43,7 +54,7 @@
 					<h1><strong>Quizzle</strong>, an Angular directive<br />
 					for generating quizzes.</h1>
 					<a href="http://github.com/MediaClassified/angular-quizzle" target="_blank" class="button small icon fa-download" style="margin-top: 20px;">View on GitHub</a>
-					<p>An open source Angular module for simple, animated true/false quizzes.</p>
+					<p>An open source Angular module for simple, animated, true/false quizzes.</p>
 					<ul class="actions" style="margin-top: 110px;">
 						<li><a href="#one" class="button scrolly">Discover</a></li>
 					</ul>
@@ -120,7 +131,7 @@
 					<header>
 						<h2>Generate a Quiz</h2>
 					</header>
-					<a href="#one" class="button">Begin</a>
+					<a class="button">Begin</a>
 				</div>
 			</section>
 
