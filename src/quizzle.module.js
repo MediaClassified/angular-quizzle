@@ -1,3 +1,3 @@
 (function(){
-    angular.module('quizzle', ['ngAnimate'])
+    angular.module('quizzle', ['ngAnimate', 'ngTouch'])
 })();
