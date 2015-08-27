@@ -1,0 +1,95 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600,700);
+
+.hide {
+	display: none !important;
+}
+
+.quizzle-container {
+	position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    min-width: 450px;
+    min-height: 500px;
+    font-family: 'Open Sans', sans-serif;
+    border-radius: 10px;
+}
+
+.quizzle-slide {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    -webkit-transition-duration: 1s;
+    transition-duration: 1s;
+}
+
+.quizzle-slide-left.ng-leave {
+    margin-left: 0;
+}
+.quizzle-slide-left.ng-leave-active {
+    margin-left: -100%;
+}
+
+.quizzle-slide-right.ng-leave {
+    margin-right: 0;
+}
+.quizzle-slide-right.ng-leave-active {
+    margin-right: -100%;
+}
+
+.quizzle-question {
+    /*position: absolute;*/
+	display: table;
+	width: 100%;
+    height: 80%;
+    /*background-color: #D1C4E9;*/
+    text-align: center;
+}
+.quizzle-question-text {
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+    height: 100%;
+    font-weight: 600;
+    font-size: 32px;
+    padding: 10px;
+}
+.quizzle-answer-container {
+	display: table;
+	position: absolute;
+    width: 100%;
+    height: 20%;
+    bottom: 0;
+}
+.quizzle-answer {
+	display: table-cell;
+    vertical-align: middle;
+	cursor: pointer;
+    width: 50%;
+    height: 100%;
+    font-size: 24px;
+    position: relative;
+    text-align: center;
+    color: #7E57C2;
+    border-radius: 10px;
+    -webkit-transition: background-color ease 0.3s;
+    transition: background-color ease 0.3s;
+}
+
+.quizzle-answer:hover {
+	background-color: rgba(0, 0, 0, 0.05);
+}
+
+.quizzle-answer:active {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+.quizzle-repeat-link {
+	width: 100%;
+    height: 100%;
+	cursor: pointer;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}

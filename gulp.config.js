@@ -6,9 +6,11 @@ module.exports = function () {
 		moduleName: 'quizzle',
 		module:src+'*.module.js',
 		order: [
+			'templates.js',
 			'*.module.js',
 			'*.js'
 		],
+		html: src+'*.html',
 		js: src+'*.js',
 		css:src+'**/*.css'
 	}
