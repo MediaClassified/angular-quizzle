@@ -1,21 +1,22 @@
 <div class="quizzle-container" ng-if="vm.activate">
     <div class="quizzle-question">
         <div class="quizzle-question-text">
-            <span>{{vm.current.text}}</span>
-        </div>
-        <div class="quizzle-question-img">
-            <img ng-class="{'hide': !vm.current.img}" ng-src="{{vm.current.img}}"/>
+            <span class="question">{{vm.current.text}}</span>
+            <img class="question-img" ng-class="{'hide': !vm.current.img}" ng-src="{{vm.current.img}}"/>
         </div>
     </div>
     <div class="quizzle-answer-container" ng-class="{'hide': !vm.current.answer}">
 
-        <div class="quizzle-answer quizzle-answer-left" ng-click="vm.answerQuestion(vm.left)">
-            <span>{{vm.left.text}}</span>
-            <img class="quizzle-answer-img" ng-src="{{vm.left.img}}" />
+        <div class="quizzle-answer" ng-click="vm.answerQuestion(vm.left)">
+            <span ng-if="!vm.left.img">{{vm.left.text}}</span>
+            <img class="quizzle-answer-img" ng-class="{'hide': !vm.left.img}" ng-src="{{vm.left.img}}" />
         </div><!--
-     --><div class="quizzle-answer quizzle-answer-right" ng-click="vm.answerQuestion(vm.right)">
-            <span>{{vm.right.text}}</span>
-            <img class="quizzle-answer-img" ng-src="{{vm.right.img}}" />
+     --><div class="quizzle-answer" ng-click="vm.answerQuestion(vm.right)">
+            <span ng-if="!vm.right.img">{{vm.right.text}}</span>
+            <img class="quizzle-answer-img" ng-class="{'hide': !vm.right.img}" ng-src="{{vm.right.img}}" />
         </div>
     </div>
+
+    <div class="quizzle-answer-container" ng-if="vm.repeat" ng-class="{'hide': vm.current.answer}">
+        <a class="quizzle-repeat-link" ng-click="vm.resetQuiz()">Click here to take the quiz again.</a>
 </div>

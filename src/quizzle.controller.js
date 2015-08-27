@@ -9,12 +9,17 @@
 			vm.current = null;
 			vm.answer = null;
 			vm.index = null;
-			vm.scores = {};
+			vm.results = {
+				scores: {},
+				answers: []
+			};
 
 			/* Functions */
 			vm.startQuiz = startQuiz;
 			vm.setQuestion = setQuestion;
 			vm.answerQuestion = answerQuestion;
+			vm.resetQuiz = resetQuiz;
+
 			vm.finish = function (results) {
                 vm.onFinish({results: results});
             };
@@ -55,12 +60,19 @@
 			}
 
 			function answerQuestion (answer) {
+				/* Store scores */
 				answer.categories.map(function(category) {
-					if(!vm.scores[category]) {
-						vm.scores[category] = 1;
+					if(!vm.results.scores[category]) {
+						vm.results.scores[category] = 1;
 					} else {
-						vm.scores[category]++;
+						vm.results.scores[category]++;
 					}
+				});
+
+				/* Store answers */
+				vm.results.answers.push({
+					question: vm.current.text,
+					answer: answer
 				});
 
 				/* Go to next question */
@@ -68,12 +80,20 @@
 				if(vm.quiz[next]) {
 					setQuestion(next);
 				} else {
-					vm.finish(vm.scores);
+					vm.finish(vm.results);
 					vm.current = {
-						text: 'Done',
+						text: 'Thanks for completing the quiz!',
 						answer: null
 					};
 				}
+			}
+
+			function resetQuiz () {
+				vm.results = {
+					scores: {},
+					answers: []
+				};
+				setQuestion(0);
 			}
 		}
 })();
