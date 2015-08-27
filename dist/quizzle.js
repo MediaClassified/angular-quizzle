@@ -1,6 +1,6 @@
-angular.module("templates", []).run(["$templateCache", function($templateCache) {$templateCache.put("quizzle.template.html","<div class=\"quizzle-container\" ng-if=\"vm.activate\">\r\n    <div class=\"quizzle-question\">\r\n        <div class=\"quizzle-question-text\">\r\n            <span class=\"question\">{{vm.current.text}}</span>\r\n            <img class=\"question-img\" ng-class=\"{\'hide\': !vm.current.img}\" ng-src=\"{{vm.current.img}}\"/>\r\n        </div>\r\n    </div>\r\n    <div class=\"quizzle-answer-container\" ng-class=\"{\'hide\': !vm.current.answer}\">\r\n        <div class=\"quizzle-answer\" ng-click=\"vm.answerQuestion(vm.left, \'left\')\">\r\n            <span ng-if=\"!vm.left.img\">{{vm.left.text}}</span>\r\n            <img class=\"quizzle-answer-img\" ng-class=\"{\'hide\': !vm.left.img}\" ng-src=\"{{vm.left.img}}\" />\r\n        </div>\r\n        <div class=\"quizzle-answer\" ng-click=\"vm.answerQuestion(vm.right, \'right\')\">\r\n            <span ng-if=\"!vm.right.img\">{{vm.right.text}}</span>\r\n            <img class=\"quizzle-answer-img\" ng-class=\"{\'hide\': !vm.right.img}\" ng-src=\"{{vm.right.img}}\" />\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"quizzle-answer-container\" ng-if=\"vm.repeat\" ng-class=\"{\'hide\': vm.current.answer}\">\r\n        <a class=\"quizzle-repeat-link\" ng-click=\"vm.resetQuiz()\">Click here to take the quiz again.</a>\r\n    </div>\r\n</div>");}]);
+angular.module("templates", []).run(["$templateCache", function($templateCache) {$templateCache.put("quizzle.template.html","<div class=\"quizzle-container\" ng-if=\"vm.activate\">\r\n    <div class=\"quizzle-slide\" ng-repeat=\"slide in vm.quiz\" ng-class=\"{\'quizzle-slide-current\':vm.index == $index, \'quizzle-slide-left\': vm.answered[$index] == \'left\', \'quizzle-slide-right\': vm.answered[$index] == \'right\'}\" ng-if=\"!vm.isAnswered($index)\" ng-swipe-left=\"vm.answerQuestion(vm.left, \'left\', $index)\" ng-swipe-right=\"vm.answerQuestion(vm.right, \'right\', $index)\">\r\n        <div class=\"quizzle-question\">\r\n            <div class=\"quizzle-question-text\">\r\n                <span>{{slide.text}}</span>\r\n                <div class=\"quizzle-question-img\">\r\n                    <img ng-class=\"{\'hide\': !slide.img}\" ng-src=\"{{slide.img}}\"/>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"quizzle-answer-container\" ng-class=\"{\'hide\': !slide.answer}\">\r\n\r\n            <div class=\"quizzle-answer quizzle-answer-left\" ng-click=\"vm.answerQuestion(vm.left, \'left\', $index)\">  \r\n                <span>{{slide.answer.left.text}}</span>\r\n                <img class=\"quizzle-answer-img\" ng-src=\"{{slide.answer.left.img}}\" />\r\n            </div>\r\n            <div class=\"quizzle-answer quizzle-answer-right\"  ng-click=\"vm.answerQuestion(vm.right, \'right\', $index)\">\r\n                <span>{{slide.answer.right.text}}</span>\r\n                <img class=\"quizzle-answer-img\" ng-src=\"{{slide.answer.right.img}}\" />\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"quizzle-slide quizzle-slide-done\" ng-if=\"vm.checkDone()\">\r\n        <div class=\"quizzle-question\">\r\n            <div class=\"quizzle-question-text\">\r\n                <span>{{vm.current.text}}</span>\r\n            </div>\r\n            <div class=\"quizzle-question-img\">\r\n            </div>\r\n        </div>\r\n        <div class=\"quizzle-answer-container\" ng-if=\"vm.repeat\" ng-class=\"{\'hide\': vm.current.answer}\">\r\n            <a class=\"quizzle-repeat-link\" ng-click=\"vm.resetQuiz()\">Click here to take the quiz again.</a>\r\n        </div>\r\n    </div>\r\n</div>\r\n");}]);
 (function(){
-    angular.module('quizzle', ['ngAnimate', 'templates'])
+    angular.module('quizzle', ['ngAnimate', 'templates', 'ngTouch'])
 })();
 (function() {
 	angular
@@ -13,22 +13,21 @@ angular.module("templates", []).run(["$templateCache", function($templateCache) 
 			vm.current = null;
 			vm.answer = null;
 			vm.index = null;
+            vm.done = false;
+            vm.answered = {};
+			vm.scores = {};
 			vm.results = {
 				scores: {},
 				answers: []
 			};
 
-            vm.visible = true;
-
-            vm.isLeft = false;
-            vm.isRight = false;
-
 			/* Functions */
 			vm.startQuiz = startQuiz;
 			vm.setQuestion = setQuestion;
 			vm.answerQuestion = answerQuestion;
+            vm.isAnswered = isAnswered;
+            vm.checkDone = checkDone;
 			vm.resetQuiz = resetQuiz;
-
 			vm.finish = function (results) {
                 vm.onFinish({results: results});
             };
@@ -68,7 +67,7 @@ angular.module("templates", []).run(["$templateCache", function($templateCache) 
 				vm.right = vm.quiz[index].answer.right;
 			}
 
-			function answerQuestion (answer, direction) {
+			function answerQuestion (answer, direction, index) {
 				/* Store scores */
 				answer.categories.map(function(category) {
 					if(!vm.results.scores[category]) {
@@ -77,6 +76,7 @@ angular.module("templates", []).run(["$templateCache", function($templateCache) 
 						vm.results.scores[category]++;
 					}
 				});
+                slide(direction, index);
 
 				/* Store answers */
 				vm.results.answers.push({
@@ -88,19 +88,23 @@ angular.module("templates", []).run(["$templateCache", function($templateCache) 
 				var next = vm.index + 1;
 				if(vm.quiz[next]) {
 					setQuestion(next);
-                    if (direction == 'left') {
-                        toggleLeft();
-                    } else if (direction == 'right') {
-                        toggleRight();
-                    }
 				} else {
-					vm.finish(vm.results);
+                    vm.index = vm.index + 1;
+                    vm.done = true;
 					vm.current = {
 						text: 'Thanks for completing the quiz!',
 						answer: null
 					};
 				}
 			}
+
+            function slide(direction, index) {
+                if (direction == 'left') {
+                    vm.answered[index] = 'left';
+                } else if (direction == 'right') {
+                    vm.answered[index] = 'right';
+                }
+            }
 
 			function resetQuiz () {
 				vm.results = {
@@ -109,22 +113,22 @@ angular.module("templates", []).run(["$templateCache", function($templateCache) 
 				};
 				setQuestion(0);
 			}
-            function toggleLeft() {
-                vm.isLeft = true;
-                vm.visible = !vm.visible;
+
+            function isAnswered(index) {
+                return vm.answered.index;
             }
 
-            function toggleRight() {
-                vm.isRight = true;
-                vm.visible = !vm.visible;
+            function checkDone() {
+                return vm.done;
             }
+
 		}
 })();
 (function() {
 
 	angular
 		.module('quizzle')
-		.directive('quizzle', function() {
+		.directive('quizzle', ['$swipe', function ($swipe) {
             return {
                 restrict: 'E',
                 scope: {
@@ -150,5 +154,5 @@ angular.module("templates", []).run(["$templateCache", function($templateCache) 
                 //     }
                 }
             }
-        });
+        }]);
 })();
