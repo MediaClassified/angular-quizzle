@@ -1,0 +1,25 @@
+{
+  "name": "angular-quizzle",
+  "version": "0.0.0",
+  "description": "An open source angular module for simple animated true/false quizzes",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MediaClassified/angular-quizzle.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MediaClassified/angular-quizzle/issues"
+  },
+  "homepage": "https://github.com/MediaClassified/angular-quizzle",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-if": "^1.2.5",
+    "gulp-inject": "^1.5.0",
+    "gulp-load-plugins": "^1.0.0-rc.1",
+    "gulp-order": "^1.1.1"
+  }
+}
