@@ -22,7 +22,7 @@ gulp.task('concat-css', function () {
 
 gulp.task('templates', function () {
 	return gulp.src(config.html)
-		.pipe($.angularTemplatecache())
+		.pipe($.angularTemplatecache({standalone:true}))
 		.pipe(gulp.dest('src'));
 })
 
