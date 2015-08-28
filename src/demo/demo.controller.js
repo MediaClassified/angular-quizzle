@@ -1,6 +1,6 @@
 (function () {
 	angular
-		.module('demo')
+		.module('core')
 		.controller('DemoController', DemoController);
 
 		function DemoController () {

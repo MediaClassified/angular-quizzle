@@ -42,6 +42,12 @@
 			height: 400px;
 			margin: 0px auto;
 		}
+		.generator-state {
+			display: none;
+		}
+		.generator-state-show {
+			display: block;
+		}
 		</style>
 
 		<!-- Include Angular-Quizzle -->
@@ -51,10 +57,20 @@
 		<link rel="stylesheet" href="bower_components/angular-quizzle/dist/quizzle.css" />
 
 		<!--Include JS -->
-		<script src="src/demo.js"></script>
-		<script src="src/demo.controller.js"></script>
+		<!-- Core -->
+		<script src="src/core/core.module.js"></script>
+		<script src="src/core/quiz.service.js"></script>
+		<!-- Demo -->
+		<script src="src/demo/demo.controller.js"></script>
+		<!-- Generator -->
+		<script src="src/generator/generator.controller.js"></script>
+		<script src="src/generator/generator.categories.controller.js"></script>
+		<script src="src/generator/generator.questions.controller.js"></script>
+		<script src="src/generator/generator.answers.controller.js"></script>
+		<script src="src/generator/generator.finish.controller.js"></script>
+
 	</head>
-	<body>
+	<body ng-app="core">
 
 		<!-- Header -->
 			<section id="header">
@@ -71,16 +87,16 @@
 			</section>
 
 		<!-- Quizzle Demo -->
-			<section id="one" class="main style1 special" ng-app="demo">
-				<div class="container" ng-controller="DemoController as vm">
-					<div class="quizzle-demo-container" ng-if="!vm.start">
+			<section id="one" class="main style1 special">
+				<div class="container" ng-controller="DemoController as demo">
+					<div class="quizzle-demo-container" ng-if="!demo.start">
 						<header>
 							<h2>Start Quiz</h2>
 						</header>
-						<a class="button"ng-click="vm.start=true">Begin</a>
+						<a class="button"ng-click="demo.start=true">Begin</a>
 					</div>
 					<div class="quizzle-demo-container">
-						<quizzle quiz="vm.quiz" repeat="true" start-on="vm.start"></quizzle>
+						<quizzle quiz="demo.quiz" repeat="true" start-on="demo.start"></quizzle>
 					</div>
 				</div>
 			</section>
@@ -93,7 +109,7 @@
 					</header>
 					<p>
 						<ol>
-							<li>Install Quizzle via <a href="http://bower.io/" target="_blank">bower</a> or <a href="">download the latest zip</a>.
+							<li>Install Quizzle via <a href="http://bower.io/" target="_blank">bower</a> or <a href="https://github.com/MediaClassified/angular-quizzle/archive/master.zip">download the latest zip</a>.
 							<code>
 								<span class="tag">bower install angular-quizzle --save</span>
 							</code>
@@ -127,7 +143,7 @@
 								angular.module('app', ['quizzle']);
 							</code>
 
-							<li><a href="#three" class="scrolly">Generate a quiz</a> or create your own. If you create your own quiz, be sure to <a href="#four" class="scrolly">follow the guidelines.</a></li>
+							<li><a href="#three" class="scrolly">Generate a quiz</a> or create your own. If you create your own quiz, be sure to <a href="http://github.com/MediaClassified/angular-quizzle/#readme" target="_blank" class="scrolly">follow the guidelines</a> outlined in the documentation.</li>
 
 							<li>Include the quizzle directive in your HTML with your quiz object.</li>
 							<code>
@@ -137,16 +153,52 @@
 							</code>
 						</ol>
 					</p>
+					<p><em>For more instructions on how to use this directive, please <a href="http://github.com/MediaClassified/angular-quizzle#readme" target="_blank">refer to the documentation</a>.</em></p>
 				</div>
 			</section>
 
 		<!-- Quiz Generator -->
 			<section id="three" class="main style1 special">
-				<div class="container">
-					<header>
-						<h2>Generate a Quiz</h2>
-					</header>
-					<a class="button">Begin</a>
+				<div class="container" data-ng-controller="GeneratorController as gen">
+					<div class="generator-prev">
+					</div>
+					<div class="generator-next">
+					</div>
+					<!-- Start Generator -->
+					<div class="generator-state generator-start" ng-class="{'generator-state-show': gen.current == 'start'}">
+						<header>
+							<h2>Generate a Quiz</h2>
+						</header>
+						<a class="button" ng-click="gen.setState(1)">Begin</a>
+					</div>
+
+					<!-- Add Categories -->
+					<div class="generator-state generator-categories" ng-controller="GeneratorCategoriesController as cat" ng-class="{'generator-state-show': gen.current == 'categories'}">
+						<header>
+							<h2>Create Categories</h2>
+						</header>						
+					</div>
+
+					<!-- Add Questions -->
+					<div class="generator-state generator-questions" ng-controller="GeneratorQuestionsController as que" ng-class="{'generator-state-show': gen.current == 'questions'}">
+						<header>
+							<h2>Create Questions</h2>
+						</header>
+					</div>
+
+					<!-- Add Answers -->
+					<div class="generator-state generator-answers" ng-controller="GeneratorAnswersController as ans" ng-class="{'generator-state-show': gen.current == 'answers'}">
+						<header>
+							<h2>Create Answers</h2>
+						</header>
+					</div>
+
+					<!--Finish Generator-->
+					<div class="generator-state generator-finish" ng-controller="GeneratorFinishController as finish" ng-class="{'generator-state-show': gen.current == 'finish'}">
+						<header>
+							<h2>Save Quiz</h2>
+						</header>
+					</div>
 				</div>
 			</section>
 
@@ -205,10 +257,10 @@
 					</header>
 					<p>Media Classified Corporation (MCC) is a print and digital publishing company serving the automotive, rental, healthcare, education, employment, career training and real estate markets. We publish an exciting selection of quality, cost-effective publications with marketing and distribution solutions for all budgets.</p>
 					<p>MCC distributes over 100 niche publications across major Ontario and Alberta cities, including Greater Toronto, Windsor, Hamilton, Niagara, London, the Kitchener-Waterloo Region, Edmonton, Calgary, Red Deer and Ft. McMurray. Our extensive distribution channels cover all major transit hubs, shopping centres and retail plazas within these areas. When combined with our high-traffic web portals, this widespread circulation network helps communities connect with a diverse selection of companies across our core markets.</p>
-					<p><em>To learn more about Media Classified, click one of the links below.</em></p>
+					<p><em>To learn more about Media Classified, visit our website or email us using the links below.</em></p>
 					<ul class="actions uniform">
-						<li><a href="http://mediaclassified.com" target="_blank" class="button">Website</a></li>
-						<li><a href="http://github.com/MediaClassified" target="_blank" class="button">GitHub</a></li>
+						<li><a href="http://www.mediaclassified.ca" target="_blank" class="button">Website</a></li>
+						<li><a href="mailto:info@mediaclassified.ca"  class="button">Email</a></li>
 					</ul>
 				</div>
 			</section>
