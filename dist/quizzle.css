@@ -5,14 +5,18 @@
 }
 
 .quizzle-container {
-	position: relative;
+    position: relative;
     overflow: hidden;
     width: 100%;
     height: 100%;
-    min-width: 450px;
-    min-height: 500px;
     font-family: 'Open Sans', sans-serif;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
     border-radius: 10px;
+}
+
+.quizzle-done {
+    z-index: 2;
 }
 
 .quizzle-slide {
@@ -20,33 +24,55 @@
     width: 100%;
     height: 100%;
     background-color: #fff;
+    z-index: 3;
     -webkit-transition-duration: 1s;
     transition-duration: 1s;
 }
 
-.quizzle-slide-left.ng-leave {
-    margin-left: 0;
-}
-.quizzle-slide-left.ng-leave-active {
-    margin-left: -100%;
+.quizzle-slide-current {
+    z-index: 10;
 }
 
-.quizzle-slide-right.ng-leave {
-    margin-right: 0;
+.quizzle-slide-left {
+    margin-left: -200%;
+    opacity: 0;
 }
-.quizzle-slide-right.ng-leave-active {
-    margin-right: -100%;
+
+.quizzle-slide-left, .quizzle-slide-right {
+    position: absolute;
+}
+
+.quizzle-slide-left.quizzle-slide-left-add {
+    margin-left: 0;
+    opacity: 1;
+}
+.quizzle-slide-left.quizzle-slide-left-add-active {
+    margin-left: -200%;
+    opacity: 0;
+}
+
+.quizzle-slide-right {
+    margin-left: 200%;
+    opacity: 0;
+}
+
+.quizzle-slide-right.quizzle-slide-right-add {
+    margin-left: 0;
+    opacity: 1;
+}
+.quizzle-slide-right.quizzle-slide-right-add-active {
+    margin-left: 200%;
+    opacity: 0;
 }
 
 .quizzle-question {
-    /*position: absolute;*/
 	display: table;
 	width: 100%;
     height: 80%;
-    /*background-color: #D1C4E9;*/
     text-align: center;
+    position: absolute;
 }
-.quizzle-question-text {
+.quizzle-question-content {
     display: table-cell;
     vertical-align: middle;
     width: 100%;
@@ -54,6 +80,10 @@
     font-weight: 600;
     font-size: 32px;
     padding: 10px;
+}
+.quizzle-question-img {
+    display: block;
+    margin: auto;
 }
 .quizzle-answer-container {
 	display: table;
@@ -75,6 +105,23 @@
     border-radius: 10px;
     -webkit-transition: background-color ease 0.3s;
     transition: background-color ease 0.3s;
+}
+
+.quizzle-answer-content {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.quizzle-answer-text, .quizzle-answer-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.quizzle-answer-img {
+    height: 100%;
 }
 
 .quizzle-answer:hover {

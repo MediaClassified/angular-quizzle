@@ -84,6 +84,9 @@ _Attributes:_
 - **startOn**: Value that starts the quiz when resolves to true.
 - **onFinish**: A function that takes in an object of quiz results.
 
+## Styling
+
+View how to customize the appearance of Quizzle on our [styling documentation](https://github.com/MediaClassified/angular-quizzle/blob/master/styling.md).
 
 ## Contributors
 

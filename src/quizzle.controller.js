@@ -9,22 +9,21 @@
 			vm.current = null;
 			vm.answer = null;
 			vm.index = null;
+            vm.done = false;
+            vm.answered = {};
+			vm.scores = {};
 			vm.results = {
 				scores: {},
 				answers: []
 			};
 
-            vm.visible = true;
-
-            vm.isLeft = false;
-            vm.isRight = false;
-
 			/* Functions */
 			vm.startQuiz = startQuiz;
 			vm.setQuestion = setQuestion;
 			vm.answerQuestion = answerQuestion;
+            vm.isAnswered = isAnswered;
+            vm.checkDone = checkDone;
 			vm.resetQuiz = resetQuiz;
-
 			vm.finish = function (results) {
                 vm.onFinish({results: results});
             };
@@ -64,7 +63,7 @@
 				vm.right = vm.quiz[index].answer.right;
 			}
 
-			function answerQuestion (answer, direction) {
+			function answerQuestion (answer, direction, index) {
 				/* Store scores */
 				answer.categories.map(function(category) {
 					if(!vm.results.scores[category]) {
@@ -73,6 +72,7 @@
 						vm.results.scores[category]++;
 					}
 				});
+                slide(direction, index);
 
 				/* Store answers */
 				vm.results.answers.push({
@@ -84,13 +84,9 @@
 				var next = vm.index + 1;
 				if(vm.quiz[next]) {
 					setQuestion(next);
-                    if (direction == 'left') {
-                        toggleLeft();
-                    } else if (direction == 'right') {
-                        toggleRight();
-                    }
 				} else {
-					vm.finish(vm.results);
+                    vm.index = vm.index + 1;
+                    vm.done = true;
 					vm.current = {
 						text: 'Thanks for completing the quiz!',
 						answer: null
@@ -98,21 +94,31 @@
 				}
 			}
 
+            function slide(direction, index) {
+                if (direction == 'left') {
+                    vm.answered[index] = 'left';
+                } else if (direction == 'right') {
+                    vm.answered[index] = 'right';
+                }
+            }
+
 			function resetQuiz () {
 				vm.results = {
 					scores: {},
 					answers: []
 				};
-				setQuestion(0);
+                vm.answered = {};
+                vm.done = false;
+                startQuiz();
 			}
-            function toggleLeft() {
-                vm.isLeft = true;
-                vm.visible = !vm.visible;
+
+            function isAnswered(index) {
+                return vm.answered[index] != undefined;
             }
 
-            function toggleRight() {
-                vm.isRight = true;
-                vm.visible = !vm.visible;
+            function checkDone() {
+                return vm.done;
             }
+
 		}
 })();
