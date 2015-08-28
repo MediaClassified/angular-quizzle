@@ -113,7 +113,7 @@
 			}
 
             function isAnswered(index) {
-                return vm.answered.index;
+                return vm.answered[index] != undefined;
             }
 
             function checkDone() {

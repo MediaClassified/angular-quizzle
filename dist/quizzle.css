@@ -16,7 +16,6 @@
 }
 
 .quizzle-done {
-    background-color: #66ff66;
     z-index: 2;
 }
 
@@ -36,16 +35,20 @@
 
 .quizzle-slide-left.quizzle-slide-left-add {
     margin-left: 0;
+    opacity: 1;
 }
 .quizzle-slide-left.quizzle-slide-left-add-active {
     margin-left: -200%;
+    opacity: 0;
 }
 
 .quizzle-slide-right.quizzle-slide-right-add {
     margin-left: 0;
+    opacity: 1;
 }
 .quizzle-slide-right.quizzle-slide-right-add-active {
     margin-left: 200%;
+    opacity: 0;
 }
 
 .quizzle-question {

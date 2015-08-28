@@ -1,5 +1,5 @@
 <div class="quizzle-container" ng-if="vm.activate">
-    <div class="quizzle-slide" ng-repeat="slide in vm.quiz" ng-class="{'quizzle-slide-current':vm.index == $index, 'quizzle-slide-left': vm.answered[$index] == 'left', 'quizzle-slide-right': vm.answered[$index] == 'right'}" ng-if="!vm.isAnswered($index)" ng-swipe-left="vm.answerQuestion(vm.left, 'left', $index)" ng-swipe-right="vm.answerQuestion(vm.right, 'right', $index)">
+    <div class="quizzle-slide" ng-repeat="slide in vm.quiz" ng-class="{'quizzle-slide-current':vm.index == $index, 'quizzle-slide-left': vm.answered[$index] == 'left', 'quizzle-slide-right': vm.answered[$index] == 'right'}" ng-swipe-left="vm.answerQuestion(vm.left, 'left', $index)" ng-swipe-right="vm.answerQuestion(vm.right, 'right', $index)">
         <div class="quizzle-question">
             <div class="quizzle-question-content">
                 <span class="quizzle-question-text">{{slide.text}}</span>
