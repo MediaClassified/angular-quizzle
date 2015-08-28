@@ -10,7 +10,13 @@
     width: 100%;
     height: 100%;
     font-family: 'Open Sans', sans-serif;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
     border-radius: 10px;
+}
+
+.quizzle-done {
+    z-index: 2;
 }
 
 .quizzle-slide {
@@ -18,7 +24,7 @@
     width: 100%;
     height: 100%;
     background-color: #fff;
-    z-index: 1;
+    z-index: 3;
     -webkit-transition-duration: 1s;
     transition-duration: 1s;
 }
@@ -42,14 +48,12 @@
 }
 
 .quizzle-question {
-    /*position: absolute;*/
 	display: table;
 	width: 100%;
     height: 80%;
-    /*background-color: #D1C4E9;*/
     text-align: center;
 }
-.quizzle-question-text {
+.quizzle-question-content {
     display: table-cell;
     vertical-align: middle;
     width: 100%;
