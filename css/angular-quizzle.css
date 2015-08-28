@@ -1,0 +1,173 @@
+html {
+	overflow-y: scroll;
+	height: 100%;	
+}
+
+/* Override html5up css */
+.\34 u, .\34 u\24 {
+	width: 50% !important;
+}
+
+.no-show {
+	visibility: hidden;
+}
+
+code {
+	display: block;
+	margin: 20px 0px;
+}
+
+/* Quizzle Demo */
+section#one {
+	padding: 20px;
+}
+
+section#one, section#three {
+    min-height: 500px;
+    display: table;
+    width: 100%;
+}
+section#one .container {
+	display: table-cell;
+    vertical-align: middle;
+    width: 100% !important;
+    text-align: center;
+}
+.quizzle-demo-container {
+	width: 500px;
+	height: 400px;
+	margin: 0px auto;
+}
+
+/* Quizzle Generator */
+
+section#three {
+	padding: 20px 0px;
+}
+section#three .container {
+	position: relative;
+	width: 100% !important;
+	text-align: center;
+	height: 550px;
+}
+
+.generator-state {
+	position: absolute;
+	width: 100%;
+	margin: 0px auto;
+	visibility: hidden;
+	opacity: 0;
+	transition: all 0.5s linear;
+	-webkit-transition: all 0.5s linear;	
+	height: 500px;
+	overflow: auto;
+}
+.generator-state-show {
+	visibility: visible;
+	opacity: 1;	
+	transition-delay: 0.4s;
+	-webkit-transition-delay: 0.4s;
+}
+
+.generator-prev, .generator-next { 
+	position: absolute;
+	top: 250px;
+	opacity: 0.5;
+	cursor: pointer;
+}
+
+.generator-prev {
+	left: 20px;
+}
+
+.generator-next {
+	right: 20px;
+}
+
+.generator-next img.ng-enter, 
+.generator-next img.ng-leave,
+.generator-prev img.ng-enter,
+.generator-prev img.ng-leave {
+	transition: all 0.3s ease;
+	-webkit-transition: all 0.3s ease;
+}
+
+.generator-prev img.ng-enter,
+.generator-next img.ng-enter {
+	opacity: 0;
+}
+
+.generator-prev img.ng-enter-active,
+.generator-next img.ng-enter-active {
+	opacity: 0.5;
+}
+
+.generator-prev img.ng-leave,
+.generator-next img.ng-leave {
+	opacity: 0.5;
+}
+
+.generator-prev img.ng-leave-active,
+.generator-next img.ng-leave-active {
+	opacity: 0;
+}
+
+.generator-start {
+	margin-top: 150px;
+}
+
+/* Quizzle Generator Categories */
+
+.generator-categories-container {
+	width: 80%;
+	margin: 0px auto;
+	text-align: center;
+}
+
+.generator-categories-container input {
+	width: 80%;
+	display: inline-block;
+	margin-right: 20px;
+	margin-top:20px;
+}
+
+.generator-categories-container button {
+	width:  15%;
+}
+
+/* Quizzle Generator Questions */
+
+.generator-questions-container, .generator-finish-container {
+	width: 80%;
+	margin: 0px auto;
+	text-align: center;
+}
+
+.generator-questions-container input {
+	width: 40%;
+	display: inline-block;
+	margin-right: 20px;
+	margin-top:20px;
+}
+
+.generator-questions-container button {
+	width:  15%;
+}
+
+/* Quizzle Generator Answers */
+
+.generator-answers-container span {
+	display: inline-block;
+	width: 5%;
+}
+
+.generator-answers-container select {
+	width: 80%;
+    margin: 20px auto;
+}
+
+.generator-finish-container textarea {
+	width: 50%;
+    margin: 20px auto;
+    height: 200px;
+}
