@@ -61,7 +61,7 @@ A quiz consists of an array of question objects. For example:
   ]
   ```
   
-_Attributes:_
+_Properties:_
 - **text**: Required. The question string.
 - **img**: URL to the image.
 - **answer**: Required. An object with `left` and `right` properties.
@@ -70,7 +70,12 @@ _Attributes:_
 Setting the `quiz` attribute:
 
   ```
-  <quizzle quiz="{your-quiz-object-here}" repeat="true" startOn="readyToStart" onFinish="computeResults()"></quizzle>
+  <quizzle 
+      quiz="{your-quiz-object-here}"
+      repeat="true" 
+      startOn="readyToStart" 
+      onFinish="computeResults">
+  </quizzle>
   ```
   
 _Attributes:_
@@ -78,3 +83,11 @@ _Attributes:_
 - **repeat**: Allows replaying the quiz.
 - **startOn**: Value that starts the quiz when resolves to true.
 - **onFinish**: A function that takes in an object of quiz results.
+
+
+## Contributors
+
+- Matthew Weeks ([weeksling](https://github.com/weeksling))
+- Iris Ng ([irislyng](https://github.com/irislyng))
+- Harit Patel ([ptlharit](https://github.com/ptlharit))
+- Jen Tran ([jyntran](https://github.com/jyntran))
