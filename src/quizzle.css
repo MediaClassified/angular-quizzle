@@ -33,6 +33,11 @@
     z-index: 10;
 }
 
+.quizzle-slide-left {
+    margin-left: -200%;
+    opacity: 0;
+}
+
 .quizzle-slide-left, .quizzle-slide-right {
     position: absolute;
 }
@@ -43,6 +48,11 @@
 }
 .quizzle-slide-left.quizzle-slide-left-add-active {
     margin-left: -200%;
+    opacity: 0;
+}
+
+.quizzle-slide-right {
+    margin-left: 200%;
     opacity: 0;
 }
 
