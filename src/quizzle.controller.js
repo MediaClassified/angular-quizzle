@@ -107,7 +107,9 @@
 					scores: {},
 					answers: []
 				};
-				setQuestion(0);
+                vm.answered = {};
+                vm.done = false;
+                startQuiz();
 			}
 
             function isAnswered(index) {
