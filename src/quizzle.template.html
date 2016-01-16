@@ -10,12 +10,14 @@
             <div class="quizzle-answer quizzle-answer-left" ng-click="vm.answerQuestion(vm.left, 'left', $index)"> 
                 <div class="quizzle-answer-content">
                     <span class="quizzle-answer-text">{{slide.answer.left.text}}</span>
+                    <span class="quizzle-answer-img icon" ng-class="vm.iconClass(vm.left.icon)"></span>
                     <img class="quizzle-answer-img" ng-src="{{slide.answer.left.img}}" />
                 </div>
             </div>
             <div class="quizzle-answer quizzle-answer-right"  ng-click="vm.answerQuestion(vm.right, 'right', $index)">
                 <div class="quizzle-answer-content">
                     <span class="quizzle-answer-text">{{slide.answer.right.text}}</span>
+                    <span class="quizzle-answer-img icon" ng-class="vm.iconClass(vm.right.icon)"></span>
                     <img class="quizzle-answer-img" ng-src="{{slide.answer.right.img}}" />
                 </div>
             </div>

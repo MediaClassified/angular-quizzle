@@ -27,6 +27,7 @@
 			vm.finish = function (results) {
                 vm.onFinish({results: results});
             };
+            vm.iconClass = iconClass;
 
 			activate();
 
@@ -118,6 +119,14 @@
 
             function checkDone() {
                 return vm.done;
+            }
+
+            function iconClass (icon) {
+            	if (icon) {
+			        return "icon-"+icon;
+			    } else {
+			        return "";
+            	}
             }
 
 		}
