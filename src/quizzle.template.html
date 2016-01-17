@@ -3,6 +3,7 @@
         <div class="quizzle-question">
             <div class="quizzle-question-content">
                 <span class="quizzle-question-text">{{slide.text}}</span>
+                <span class="quizzle-question-text" ng-class="vm.iconClass(slide.icon)"></span>
                 <img class="quizzle-question-img" ng-class="{'hide': !slide.img}" ng-src="{{slide.img}}"/>
             </div>
         </div>
