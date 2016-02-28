@@ -96,6 +96,7 @@ angular.module("templates", []).run(["$templateCache", function($templateCache) 
 						text: 'Thanks for completing the quiz!',
 						answer: null
 					};
+					vm.finish(vm.results);
 				}
 			}
 
